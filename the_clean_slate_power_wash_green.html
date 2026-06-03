@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Clean Slate Power Wash LLC — Arvada's Premier Pressure Washing</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Space+Mono:wght@400;700&display=swap');
+
+  :root {
+    --black: #0A1628;
+    --off-black: #0D1F3C;
+    --card: #112244;
+    --border: #1E3A5F;
+    --white: #F0EDE8;
+    --muted: #F0EDE8;
+    --accent: #5BC4F5;
+    --accent2: #C9A84C;
+    --red: #FF3B3B;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom cursor */
+  .cursor {
+    width: 12px; height: 12px;
+    background: #5BC4F5;
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%,-50%);
+    transition: transform 0.1s, width 0.2s, height 0.2s, background 0.2s;
+    mix-blend-mode: difference;
+  }
+  .cursor.grow { width: 40px; height: 40px; background: var(--accent); opacity: 0.4; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 48px;
+    border-bottom: 1px solid transparent;
+    transition: background 0.4s, border-color 0.4s;
+  }
+  nav.scrolled { background: rgba(10,22,40,0.97); border-color: var(--border); backdrop-filter: blur(12px); }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--accent); }
+
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+
+  .nav-cta {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 10px 24px;
+    background: var(--accent);
+    color: var(--black);
+    border: none;
+    cursor: pointer;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .nav-cta:hover { background: #C9A84C; color: #090909; transform: translateY(-1px); }
+
+  /* HERO */
+  #home {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 40%, rgba(91,196,245,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 70%, rgba(201,168,76,0.06) 0%, transparent 60%),
+      var(--black);
+  }
+
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(91,196,245,0.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(91,196,245,0.08) 1px, transparent 1px);
+    background-size: 80px 80px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(80px, 14vw, 200px);
+    line-height: 0.88;
+    letter-spacing: -1px;
+    color: var(--white);
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+  .hero-title .outline {
+    -webkit-text-stroke: 1px rgba(240,237,232,0.3);
+    color: transparent;
+  }
+  .hero-title .accent { color: var(--accent); }
+
+  .hero-bottom {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-top: 40px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+  }
+  .hero-desc {
+    max-width: 380px;
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .hero-desc strong { color: var(--white); font-weight: 500; }
+
+  .hero-stats { display: flex; gap: 48px; }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 48px;
+    line-height: 1;
+    color: var(--white);
+  }
+  .stat-num span { color: var(--accent); }
+  .stat-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 32px; left: 50%;
+    transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    opacity: 0;
+    animation: fadeUp 1s 1s forwards;
+  }
+  .scroll-indicator span {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .scroll-line {
+    width: 1px; height: 48px;
+    background: linear-gradient(to bottom, var(--muted), transparent);
+    animation: scrollPulse 1.5s infinite;
+  }
+
+  /* MARQUEE */
+  .marquee-wrap {
+    background: #5BC4F5;
+    overflow: hidden;
+    padding: 14px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .marquee-inner {
+    display: flex;
+    gap: 0;
+    white-space: nowrap;
+    animation: marquee 20s linear infinite;
+  }
+  .marquee-item {
+    font-family: var(--font-display);
+    font-size: 18px;
+    letter-spacing: 3px;
+    color: #0A1628;
+    padding: 0 40px;
+    text-transform: uppercase;
+  }
+  .marquee-sep { color: rgba(9,9,9,0.4); }
+
+  /* SECTIONS */
+  section { padding: 120px 48px; }
+  .section-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(48px, 7vw, 100px);
+    line-height: 0.9;
+    letter-spacing: 1px;
+    color: var(--white);
+    margin-bottom: 48px;
+  }
+
+  /* SERVICES */
+  #services { background: var(--off-black); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-top: 60px;
+  }
+  .service-card {
+    background: var(--card);
+    padding: 40px 36px;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+    cursor: none;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .service-card:hover { background: #1a1a1a; }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-card:nth-child(even)::before { background: #C9A84C; }
+
+  .service-num {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    margin-bottom: 24px;
+  }
+  .service-icon {
+    font-size: 36px;
+    margin-bottom: 20px;
+    display: block;
+  }
+  .service-name {
+    font-family: var(--font-display);
+    font-size: 32px;
+    letter-spacing: 1px;
+    color: var(--white);
+    margin-bottom: 12px;
+  }
+  .service-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.7;
+    font-weight: 300;
+    margin-bottom: 24px;
+  }
+  .service-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  /* PRICING */
+  #pricing { background: var(--black); }
+  .pricing-intro {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+    margin-bottom: 80px;
+  }
+  .pricing-note {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.8;
+    font-weight: 300;
+    margin-top: 8px;
+  }
+
+  .pricing-table { width: 100%; border-collapse: collapse; }
+  .pricing-table thead tr {
+    border-bottom: 1px solid #5BC4F5;
+  }
+  .pricing-table th {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 12px 0;
+    text-align: left;
+    font-weight: 400;
+  }
+  .pricing-table th:last-child { text-align: right; }
+  .pricing-table tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .pricing-table tbody tr:hover { background: var(--card); }
+  .pricing-table td {
+    padding: 20px 0;
+    font-size: 15px;
+  }
+  .pricing-table td:first-child { color: var(--white); font-weight: 500; }
+  .pricing-table td:nth-child(2) {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--muted);
+    padding-right: 24px;
+  }
+  .pricing-table td:last-child {
+    text-align: right;
+    font-family: var(--font-display);
+    font-size: 28px;
+    color: var(--accent);
+    letter-spacing: 1px;
+  }
+
+  .bundle-box {
+    margin-top: 48px;
+    border: 1px solid var(--accent);
+    padding: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+  .bundle-box::before {
+    content: 'BEST VALUE';
+    position: absolute;
+    top: 16px; right: 16px;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    background: var(--accent2);
+    color: var(--black);
+    padding: 4px 10px;
+    font-weight: 700;
+  }
+  .bundle-name {
+    font-family: var(--font-display);
+    font-size: 36px;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .bundle-includes {
+    font-size: 13px;
+    color: var(--muted);
+    font-weight: 300;
+  }
+  .bundle-price {
+    font-family: var(--font-display);
+    font-size: 72px;
+    color: #C9A84C;
+    line-height: 1;
+    letter-spacing: 2px;
+    white-space: nowrap;
+  }
+  .bundle-save {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: #C9A84C;
+    letter-spacing: 0.1em;
+    text-align: right;
+    margin-top: 6px;
+  }
+
+  /* CONTACT */
+  #contact { background: var(--off-black); }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    margin-top: 60px;
+  }
+  .contact-left {}
+  .contact-headline {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 5vw, 72px);
+    line-height: 0.95;
+    letter-spacing: 1px;
+    margin-bottom: 32px;
+  }
+  .contact-headline .accent { color: var(--accent); }
+  .contact-info { display: flex; flex-direction: column; gap: 20px; }
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 24px;
+    border: 1px solid var(--border);
+    transition: border-color 0.2s;
+  }
+  .contact-item:hover { border-color: var(--accent); }
+  .contact-icon { font-size: 20px; flex-shrink: 0; }
+  .contact-label {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+  }
+  .contact-value { font-size: 16px; color: var(--white); font-weight: 500; }
+
+  .contact-form { display: flex; flex-direction: column; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .form-label {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .form-input, .form-textarea, .form-select {
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 14px;
+    padding: 14px 18px;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+    appearance: none;
+  }
+  .form-input::placeholder, .form-textarea::placeholder { color: var(--muted); }
+  .form-input:focus, .form-textarea:focus, .form-select:focus { border-color: var(--accent); }
+  .form-textarea { resize: vertical; min-height: 120px; }
+  .form-select option { background: var(--card); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .submit-btn {
+    background: var(--accent);
+    color: var(--black);
+    border: none;
+    padding: 18px 40px;
+    font-family: var(--font-display);
+    font-size: 22px;
+    letter-spacing: 2px;
+    cursor: none;
+    transition: background 0.2s, transform 0.15s;
+    margin-top: 8px;
+    width: 100%;
+  }
+  .submit-btn:hover { background: var(--white); transform: translateY(-2px); }
+
+  /* FOOTER */
+  footer {
+    background: var(--black);
+    border-top: 1px solid var(--border);
+    padding: 40px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .footer-logo {
+    font-family: var(--font-display);
+    font-size: 24px;
+    letter-spacing: 2px;
+    color: var(--white);
+  }
+  .footer-logo span { color: var(--accent); }
+  .footer-copy {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .footer-phone {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
+  }
+
+  /* Page transitions */
+  .page-section { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .page-section.visible { opacity: 1; transform: translateY(0); }
+
+  /* Active nav */
+  .nav-links a.active { color: var(--white); }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#home" class="nav-logo">THE CLEAN SLATE<br><span style="font-size:0.6em;letter-spacing:3px">POWER WASH LLC</span></a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Get a Quote</a>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div style="position:relative;z-index:2">
+    <div class="hero-eyebrow">Arvada's Premier Power Washing · Est. 2025</div>
+    <div class="hero-title">
+      THE CLEAN<br>
+      <span class="outline">SLATE</span><br>
+      <span class="accent">POWER WASH</span>
+    </div>
+    <div class="hero-bottom">
+      <div class="hero-desc">
+        <strong>We don't just clean surfaces — we restore them.</strong> Driveways, houses, patios, fences. Serving Arvada, Wheat Ridge & Westminster with pressure washing that actually lasts.
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num">5<span>★</span></div>
+          <div class="stat-label">Rated local</div>
+        </div>
+        <div>
+          <div class="stat-num">100<span>%</span></div>
+          <div class="stat-label">Satisfaction</div>
+        </div>
+        <div>
+          <div class="stat-num">24<span>hr</span></div>
+          <div class="stat-label">Response time</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-inner">
+    <span class="marquee-item">Driveways <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">House Washing <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Soft Wash <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Patios <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Gutters <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Fences <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Concrete Sealing <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Fleet Washing <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Driveways <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">House Washing <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Soft Wash <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Patios <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Gutters <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Fences <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Concrete Sealing <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Fleet Washing <span class="marquee-sep">·</span></span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services" class="page-section">
+  <div class="section-eyebrow">What we do</div>
+  <div class="section-title">OUR<br>SERVICES</div>
+
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-num">01 —</div>
+      <span class="service-icon">💧</span>
+      <div class="service-name">DRIVEWAYS & CONCRETE</div>
+      <div class="service-desc">Oil stains, tire marks, algae — gone. We use high-pressure surface cleaners for a streak-free finish every time. Before & after photos on every job.</div>
+      <div class="service-tag">Most popular service →</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">02 —</div>
+      <span class="service-icon">🏠</span>
+      <div class="service-name">HOUSE SOFT WASH</div>
+      <div class="service-desc">Low-pressure, high-volume soft wash system that kills mold, algae, and mildew at the root. Safe for all siding types. Single and two-story homes.</div>
+      <div class="service-tag">Highest margin service →</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">03 —</div>
+      <span class="service-icon">🪵</span>
+      <div class="service-name">DECKS & PATIOS</div>
+      <div class="service-desc">Composite, wood, concrete, pavers — each surface gets the right pressure and chemical treatment. Optional sealing available to protect your investment.</div>
+      <div class="service-tag">Add sealing for 2× value →</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">04 —</div>
+      <span class="service-icon">🌿</span>
+      <div class="service-name">FENCES & GUTTERS</div>
+      <div class="service-desc">Vinyl, wood, and composite fences restored to original color. Gutter flushing from the ground — no ladder, no risk, done in 20 minutes.</div>
+      <div class="service-tag">Easy upsell add-on →</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">05 —</div>
+      <span class="service-icon">🚗</span>
+      <div class="service-name">VEHICLES & FLEET</div>
+      <div class="service-desc">Cars, trucks, trailers, and commercial fleet vehicles. Foam cannon application, gentle rinse. Monthly contracts available for local businesses.</div>
+      <div class="service-tag">Recurring revenue →</div>
+    </div>
+    <div class="service-card">
+      <div class="service-num">06 —</div>
+      <span class="service-icon">🏢</span>
+      <div class="service-name">COMMERCIAL</div>
+      <div class="service-desc">Parking lots, building exteriors, storefronts, and restaurant pads. We serve Arvada's commercial properties with competitive contract pricing.</div>
+      <div class="service-tag">Contact for pricing →</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="page-section">
+  <div class="section-eyebrow">Transparent rates</div>
+  <div class="pricing-intro">
+    <div>
+      <div class="section-title">WHAT<br>YOU PAY</div>
+    </div>
+    <div style="padding-top: 8px;">
+      <div class="pricing-note">No hidden fees. No surprise charges. We quote before we start — and we stick to it. All jobs include before & after photos. Satisfaction guaranteed or we come back free.</div>
+      <div style="margin-top: 24px; font-family: var(--font-mono); font-size: 11px; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase;">Call or text for a free quote → 720-333-1996</div>
+    </div>
+  </div>
+
+  <table class="pricing-table">
+    <thead>
+      <tr>
+        <th>Service</th>
+        <th>Details</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Driveway — Standard</td>
+        <td>Up to 600 sq ft concrete</td>
+        <td>$100–$180</td>
+      </tr>
+      <tr>
+        <td>Driveway — Large</td>
+        <td>600–1,200 sq ft, 3-car garage</td>
+        <td>$180–$280</td>
+      </tr>
+      <tr>
+        <td>House Soft Wash</td>
+        <td>Single story exterior siding</td>
+        <td>$200–$350</td>
+      </tr>
+      <tr>
+        <td>House Soft Wash</td>
+        <td>Two story exterior siding</td>
+        <td>$350–$500</td>
+      </tr>
+      <tr>
+        <td>Patio / Deck</td>
+        <td>200–500 sq ft concrete or wood</td>
+        <td>$80–$200</td>
+      </tr>
+      <tr>
+        <td>Sidewalk</td>
+        <td>Front walk add-on</td>
+        <td>$50–$100</td>
+      </tr>
+      <tr>
+        <td>Fence</td>
+        <td>Vinyl or wood, per 100 linear ft</td>
+        <td>$80–$200</td>
+      </tr>
+      <tr>
+        <td>Gutter Flush</td>
+        <td>Single story, from ground</td>
+        <td>$100–$150</td>
+      </tr>
+      <tr>
+        <td>Concrete Sealing</td>
+        <td>Applied after driveway wash</td>
+        <td>$150–$300</td>
+      </tr>
+      <tr>
+        <td>Vehicle Detail Wash</td>
+        <td>Car, truck, or SUV</td>
+        <td>$75–$125</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="bundle-box">
+    <div>
+      <div class="bundle-name">THE FULL SLATE BUNDLE</div>
+      <div class="bundle-includes">Driveway + Sidewalk + Patio + House Exterior — everything in one visit</div>
+    </div>
+    <div>
+      <div class="bundle-price">$350+</div>
+      <div class="bundle-save">SAVE $50–$80 vs. individual pricing</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="page-section">
+  <div class="section-eyebrow">Get in touch</div>
+
+  <div class="contact-grid">
+    <div class="contact-left">
+      <div class="contact-headline">
+        START<br>
+        YOUR<br>
+        <span class="accent">POWER WASH LLC.</span>
+      </div>
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">📱</div>
+          <div>
+            <div class="contact-label">Text or call</div>
+            <div class="contact-value">720-333-1996</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="contact-label">Service area</div>
+            <div class="contact-value">Arvada · Wheat Ridge · Westminster</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">⏱</div>
+          <div>
+            <div class="contact-label">Response time</div>
+            <div class="contact-value">Same day — always</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📅</div>
+          <div>
+            <div class="contact-label">Availability</div>
+            <div class="contact-value">Mon–Sat · Summer slots filling fast</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">First name</label>
+            <input class="form-input" type="text" placeholder="John" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last name</label>
+            <input class="form-input" type="text" placeholder="Smith">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Phone number</label>
+          <input class="form-input" type="tel" placeholder="720-555-0000" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Address</label>
+          <input class="form-input" type="text" placeholder="Street address in Arvada / Wheat Ridge">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Service needed</label>
+          <select class="form-select">
+            <option value="">Select a service...</option>
+            <option>Driveway & Concrete</option>
+            <option>House Soft Wash</option>
+            <option>Deck / Patio</option>
+            <option>Fence</option>
+            <option>Gutter Flush</option>
+            <option>Full Slate Bundle</option>
+            <option>Multiple services</option>
+            <option>Not sure — need a quote</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tell us more (optional)</label>
+          <textarea class="form-textarea" placeholder="Any details about the job — size of driveway, condition of surfaces, etc."></textarea>
+        </div>
+        <button type="submit" class="submit-btn">SEND REQUEST →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">THE CLEAN SLATE<br><span style="font-size:0.6em;letter-spacing:3px">POWER WASH LLC</span></div>
+  <div class="footer-copy">© 2025 The Clean Slate Power Wash LLC · Arvada, CO · All rights reserved</div>
+  <div class="footer-phone">720-333-1996</div>
+</footer>
+
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button, .service-card, .contact-item').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('grow'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('grow'));
+  });
+
+  // Navbar scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.page-section').forEach(s => observer.observe(s));
+
+  // Active nav link
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 200) current = s.getAttribute('id');
+    });
+    navLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+
+  // Form submit
+  function handleSubmit(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.submit-btn');
+    btn.textContent = 'REQUEST SENT ✓';
+    btn.style.background = '#00C2FF';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.textContent = 'SEND REQUEST →';
+      btn.style.background = '';
+      btn.disabled = false;
+      e.target.reset();
+    }, 3000);
+  }
+</script>
+</body>
+</html>
