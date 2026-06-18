@@ -253,7 +253,7 @@
   #services { background: var(--off-black); }
   .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 1px;
     background: var(--border);
     border: 1px solid var(--border);
@@ -266,6 +266,8 @@
     overflow: hidden;
     transition: background 0.3s;
     cursor: none;
+    display: flex;
+    flex-direction: column;
   }
   .service-card::before {
     content: '';
@@ -613,21 +615,25 @@
 <div class="marquee-wrap">
   <div class="marquee-inner">
     <span class="marquee-item">Driveways <span class="marquee-sep">·</span></span>
-    <span class="marquee-item">House Washing <span class="marquee-sep">·</span></span>
-    <span class="marquee-item">Soft Wash <span class="marquee-sep">·</span></span>
+    
     <span class="marquee-item">Patios <span class="marquee-sep">·</span></span>
     <span class="marquee-item">Gutters <span class="marquee-sep">·</span></span>
     <span class="marquee-item">Fences <span class="marquee-sep">·</span></span>
-    <span class="marquee-item">Concrete Sealing <span class="marquee-sep">·</span></span>
     <span class="marquee-item">Fleet Washing <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Interior Detailing <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Garbage Can Clean <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Interior Detailing <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Garbage Can Clean <span class="marquee-sep">·</span></span>
     <span class="marquee-item">Driveways <span class="marquee-sep">·</span></span>
-    <span class="marquee-item">House Washing <span class="marquee-sep">·</span></span>
-    <span class="marquee-item">Soft Wash <span class="marquee-sep">·</span></span>
+    
     <span class="marquee-item">Patios <span class="marquee-sep">·</span></span>
     <span class="marquee-item">Gutters <span class="marquee-sep">·</span></span>
     <span class="marquee-item">Fences <span class="marquee-sep">·</span></span>
-    <span class="marquee-item">Concrete Sealing <span class="marquee-sep">·</span></span>
     <span class="marquee-item">Fleet Washing <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Interior Detailing <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Garbage Can Clean <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Interior Detailing <span class="marquee-sep">·</span></span>
+    <span class="marquee-item">Garbage Can Clean <span class="marquee-sep">·</span></span>
   </div>
 </div>
 
@@ -646,10 +652,11 @@
     </div>
     <div class="service-card">
       <div class="service-num">02 —</div>
-      <span class="service-icon">🏠</span>
-      <div class="service-name">HOUSE SOFT WASH</div>
-      <div class="service-desc">Low-pressure, high-volume soft wash system that kills mold, algae, and mildew at the root. Safe for all siding types. Single and two-story homes.</div>
-      <div class="service-tag">Highest margin service →</div>
+      <span class="service-icon">🚗</span>
+      <div class="service-name">FULL CAR DETAIL</div>
+      <div class="service-desc">Complete interior and exterior detail — full vacuum, wipe-down of all surfaces, dashboard, door panels, windows inside and out, and exterior wash. Your car leaves looking and smelling brand new.</div>
+      <div class="service-tag">Book your detail today →</div>
+    </div>
     </div>
     <div class="service-card">
       <div class="service-num">03 —</div>
@@ -667,17 +674,10 @@
     </div>
     <div class="service-card">
       <div class="service-num">05 —</div>
-      <span class="service-icon">🚗</span>
-      <div class="service-name">VEHICLES & FLEET</div>
-      <div class="service-desc">Cars, trucks, trailers, and commercial fleet vehicles. Foam cannon application, gentle rinse. Monthly contracts available for local businesses.</div>
-      <div class="service-tag">Recurring revenue →</div>
-    </div>
-    <div class="service-card">
-      <div class="service-num">06 —</div>
-      <span class="service-icon">🏢</span>
-      <div class="service-name">COMMERCIAL</div>
-      <div class="service-desc">Parking lots, building exteriors, storefronts, and restaurant pads. We serve Arvada's commercial properties with competitive contract pricing.</div>
-      <div class="service-tag">Contact for pricing →</div>
+      <span class="service-icon">🗑️</span>
+      <div class="service-name">GARBAGE CAN CLEAN</div>
+      <div class="service-desc">Full power wash inside and out, deodorized and sanitized. Kills bacteria, mold, and odors. Your cans will smell brand new — we handle the gross stuff so you don't have to.</div>
+      <div class="service-tag">Only $10 per can →</div>
     </div>
   </div>
 </section>
@@ -707,52 +707,42 @@
       <tr>
         <td>Driveway — Standard</td>
         <td>Up to 600 sq ft concrete</td>
-        <td>$100–$180</td>
+        <td>$50–$60</td>
       </tr>
       <tr>
         <td>Driveway — Large</td>
         <td>600–1,200 sq ft, 3-car garage</td>
-        <td>$180–$280</td>
-      </tr>
-      <tr>
-        <td>House Soft Wash</td>
-        <td>Single story exterior siding</td>
-        <td>$200–$350</td>
-      </tr>
-      <tr>
-        <td>House Soft Wash</td>
-        <td>Two story exterior siding</td>
-        <td>$350–$500</td>
+        <td>$75–$90</td>
       </tr>
       <tr>
         <td>Patio / Deck</td>
         <td>200–500 sq ft concrete or wood</td>
-        <td>$80–$200</td>
+        <td>$50–$70</td>
       </tr>
       <tr>
         <td>Sidewalk</td>
         <td>Front walk add-on</td>
-        <td>$50–$100</td>
+        <td>$20–$30</td>
       </tr>
       <tr>
         <td>Fence</td>
         <td>Vinyl or wood, per 100 linear ft</td>
-        <td>$80–$200</td>
+        <td>$50–$70</td>
       </tr>
       <tr>
         <td>Gutter Flush</td>
         <td>Single story, from ground</td>
-        <td>$100–$150</td>
+        <td>$40–$60</td>
       </tr>
       <tr>
-        <td>Concrete Sealing</td>
-        <td>Applied after driveway wash</td>
-        <td>$150–$300</td>
+        <td>Garbage Can Clean</td>
+        <td>Power washed, deodorized &amp; sanitized</td>
+        <td>$10 per can</td>
       </tr>
       <tr>
-        <td>Vehicle Detail Wash</td>
-        <td>Car, truck, or SUV</td>
-        <td>$75–$125</td>
+        <td>Car Detail</td>
+        <td>Interior &amp; exterior — vacuum, wipe-down, windows</td>
+        <td>$50–$70</td>
       </tr>
     </tbody>
   </table>
@@ -760,7 +750,7 @@
   <div class="bundle-box">
     <div>
       <div class="bundle-name">THE FULL SLATE BUNDLE</div>
-      <div class="bundle-includes">Driveway + Sidewalk + Patio + House Exterior — everything in one visit</div>
+      <div class="bundle-includes">Driveway + Sidewalk + Patio + Car Detail — complete property package</div>
     </div>
     <div>
       <div class="bundle-price">$350+</div>
@@ -839,10 +829,10 @@
           <select class="form-select" name="service">
             <option value="">Select a service...</option>
             <option>Driveway & Concrete</option>
-            <option>House Soft Wash</option>
             <option>Deck / Patio</option>
             <option>Fence</option>
             <option>Gutter Flush</option>
+            <option>Garbage Can Clean</option>
             <option>Full Slate Bundle</option>
             <option>Multiple services</option>
             <option>Not sure — need a quote</option>
