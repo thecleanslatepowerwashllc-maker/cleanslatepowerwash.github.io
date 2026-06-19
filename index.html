@@ -3,99 +3,86 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Clean Slate Power Wash LLC — Arvada's Premier Pressure Washing</title>
+<title>The Clean Slate Power Wash LLC — Arvada's Premier Power Washing</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Space+Mono:wght@400;700&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;0,9..40,800;1,9..40,400&family=Space+Mono:wght@400;700&display=swap');
 
   :root {
-    --black: #0A1628;
-    --off-black: #0D1F3C;
+    --navy: #0A1628;
+    --navy2: #0D1F3C;
     --card: #112244;
     --border: #1E3A5F;
     --white: #F0EDE8;
-    --muted: #F0EDE8;
-    --accent: #5BC4F5;
-    --accent2: #C9A84C;
-    --red: #FF3B3B;
+    --blue: #5BC4F5;
+    --gold: #C9A84C;
     --font-display: 'Bebas Neue', sans-serif;
     --font-body: 'DM Sans', sans-serif;
     --font-mono: 'Space Mono', monospace;
   }
 
   * { margin:0; padding:0; box-sizing:border-box; }
-
   html { scroll-behavior: smooth; }
 
   body {
-    background: var(--black);
+    background: var(--navy);
     color: var(--white);
     font-family: var(--font-body);
-    font-size: 16px;
+    font-weight: 500;
+    font-size: 18px;
     line-height: 1.6;
     overflow-x: hidden;
-    cursor: none;
   }
-
-  /* Custom cursor */
-  .cursor {
-    width: 12px; height: 12px;
-    background: #5BC4F5;
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    transform: translate(-50%,-50%);
-    transition: transform 0.1s, width 0.2s, height 0.2s, background 0.2s;
-    mix-blend-mode: difference;
-  }
-  .cursor.grow { width: 40px; height: 40px; background: var(--accent); opacity: 0.4; }
 
   /* NAV */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 20px 48px;
-    border-bottom: 1px solid transparent;
+    padding: 22px 48px;
     transition: background 0.4s, border-color 0.4s;
+    border-bottom: 1px solid transparent;
   }
   nav.scrolled { background: rgba(10,22,40,0.97); border-color: var(--border); backdrop-filter: blur(12px); }
 
   .nav-logo {
     font-family: var(--font-display);
-    font-size: 28px;
-    letter-spacing: 2px;
+    font-size: 30px;
+    letter-spacing: 1px;
     color: var(--white);
     text-decoration: none;
+    line-height: 1;
   }
-  .nav-logo span { color: var(--accent); }
+  .nav-logo .sub { display:block; font-size: 13px; color: var(--blue); letter-spacing: 3px; margin-top: 2px; }
 
-  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links { display: flex; gap: 40px; list-style: none; }
   .nav-links a {
     font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.12em;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--white);
     text-decoration: none;
     transition: color 0.2s;
   }
-  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover { color: var(--blue); }
+  .nav-links a.active { color: var(--blue); }
 
   .nav-cta {
     font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.1em;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    padding: 10px 24px;
-    background: var(--accent);
-    color: var(--black);
+    padding: 12px 26px;
+    background: var(--blue);
+    color: var(--navy);
     border: none;
     cursor: pointer;
-    font-weight: 700;
     text-decoration: none;
+    border-radius: 4px;
     transition: background 0.2s, transform 0.15s;
   }
-  .nav-cta:hover { background: #C9A84C; color: #090909; transform: translateY(-1px); }
+  .nav-cta:hover { background: var(--gold); transform: translateY(-1px); }
 
   /* HERO */
   #home {
@@ -107,15 +94,13 @@
     position: relative;
     overflow: hidden;
   }
-
   .hero-bg {
     position: absolute; inset: 0;
     background:
-      radial-gradient(ellipse 60% 50% at 80% 40%, rgba(91,196,245,0.08) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 60% at 20% 70%, rgba(201,168,76,0.06) 0%, transparent 60%),
-      var(--black);
+      radial-gradient(ellipse 60% 50% at 80% 40%, rgba(91,196,245,0.10) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 20% 70%, rgba(201,168,76,0.07) 0%, transparent 60%),
+      var(--navy);
   }
-
   .hero-grid {
     position: absolute; inset: 0;
     background-image:
@@ -127,62 +112,62 @@
 
   .hero-eyebrow {
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: 14px;
+    font-weight: 700;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 16px;
+    color: var(--gold);
+    margin-bottom: 20px;
     opacity: 0;
     animation: fadeUp 0.8s 0.2s forwards;
   }
-
   .hero-title {
     font-family: var(--font-display);
-    font-size: clamp(80px, 14vw, 200px);
-    line-height: 0.88;
-    letter-spacing: -1px;
+    font-size: clamp(90px, 15vw, 220px);
+    line-height: 0.85;
+    letter-spacing: 0px;
     color: var(--white);
     opacity: 0;
     animation: fadeUp 0.8s 0.4s forwards;
   }
-  .hero-title .outline {
-    -webkit-text-stroke: 1px rgba(240,237,232,0.3);
-    color: transparent;
-  }
-  .hero-title .accent { color: var(--accent); }
+  .hero-title .blue { color: var(--blue); }
+  .hero-title .gold { color: var(--gold); }
 
   .hero-bottom {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    margin-top: 40px;
+    margin-top: 44px;
+    gap: 40px;
     opacity: 0;
     animation: fadeUp 0.8s 0.6s forwards;
+    flex-wrap: wrap;
   }
   .hero-desc {
-    max-width: 380px;
-    font-size: 15px;
-    color: var(--muted);
+    max-width: 440px;
+    font-size: 19px;
+    font-weight: 500;
+    color: var(--white);
     line-height: 1.7;
-    font-weight: 300;
   }
-  .hero-desc strong { color: var(--white); font-weight: 500; }
+  .hero-desc strong { color: var(--blue); font-weight: 800; }
 
   .hero-stats { display: flex; gap: 48px; }
   .stat-num {
     font-family: var(--font-display);
-    font-size: 48px;
+    font-size: 56px;
     line-height: 1;
     color: var(--white);
   }
-  .stat-num span { color: var(--accent); }
+  .stat-num span { color: var(--gold); }
   .stat-label {
     font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.12em;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--muted);
-    margin-top: 4px;
+    color: var(--blue);
+    margin-top: 6px;
   }
 
   .scroll-indicator {
@@ -195,347 +180,389 @@
   }
   .scroll-indicator span {
     font-family: var(--font-mono);
-    font-size: 9px;
+    font-size: 11px;
+    font-weight: 700;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--blue);
   }
   .scroll-line {
-    width: 1px; height: 48px;
-    background: linear-gradient(to bottom, var(--muted), transparent);
+    width: 2px; height: 48px;
+    background: linear-gradient(to bottom, var(--blue), transparent);
     animation: scrollPulse 1.5s infinite;
   }
 
   /* MARQUEE */
   .marquee-wrap {
-    background: #5BC4F5;
+    background: var(--blue);
     overflow: hidden;
-    padding: 14px 0;
+    padding: 16px 0;
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
   }
   .marquee-inner {
-    display: flex;
-    gap: 0;
-    white-space: nowrap;
-    animation: marquee 20s linear infinite;
+    display: flex; white-space: nowrap;
+    animation: marquee 22s linear infinite;
   }
   .marquee-item {
     font-family: var(--font-display);
-    font-size: 18px;
+    font-size: 22px;
     letter-spacing: 3px;
-    color: #0A1628;
+    color: var(--navy);
     padding: 0 40px;
     text-transform: uppercase;
   }
-  .marquee-sep { color: rgba(9,9,9,0.4); }
+  .marquee-sep { color: rgba(10,22,40,0.4); }
 
   /* SECTIONS */
-  section { padding: 120px 48px; }
+  section { padding: 130px 48px; }
   .section-eyebrow {
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: 13px;
+    font-weight: 700;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--accent);
-    margin-bottom: 16px;
+    color: var(--gold);
+    margin-bottom: 18px;
   }
   .section-title {
     font-family: var(--font-display);
-    font-size: clamp(48px, 7vw, 100px);
-    line-height: 0.9;
-    letter-spacing: 1px;
+    font-size: clamp(56px, 8vw, 120px);
+    line-height: 0.88;
+    letter-spacing: 0px;
     color: var(--white);
-    margin-bottom: 48px;
+    margin-bottom: 56px;
   }
 
   /* SERVICES */
-  #services { background: var(--off-black); }
+  #services { background: var(--navy2); }
   .services-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 1px;
+    gap: 2px;
     background: var(--border);
-    border: 1px solid var(--border);
-    margin-top: 60px;
+    border: 2px solid var(--border);
+    margin-top: 64px;
   }
   .service-card {
     background: var(--card);
-    padding: 40px 36px;
+    padding: 48px 40px;
     position: relative;
     overflow: hidden;
     transition: background 0.3s;
-    cursor: none;
     display: flex;
     flex-direction: column;
   }
-
   .service-card::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
-    height: 2px;
-    background: var(--accent);
+    height: 4px;
+    background: var(--blue);
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 0.4s ease;
   }
-  .service-card:hover { background: #1a1a1a; }
+  .service-card:hover { background: #15294f; }
   .service-card:hover::before { transform: scaleX(1); }
-  .service-card:nth-child(even)::before { background: #C9A84C; }
 
   .service-num {
     font-family: var(--font-mono);
-    font-size: 10px;
-    color: var(--muted);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--gold);
     letter-spacing: 0.15em;
-    margin-bottom: 24px;
+    margin-bottom: 28px;
   }
-  .service-icon {
-    font-size: 36px;
-    margin-bottom: 20px;
-    display: block;
-  }
+  .service-icon { font-size: 44px; margin-bottom: 24px; display: block; }
   .service-name {
     font-family: var(--font-display);
-    font-size: 32px;
+    font-size: 38px;
     letter-spacing: 1px;
     color: var(--white);
-    margin-bottom: 12px;
+    margin-bottom: 16px;
   }
   .service-desc {
-    font-size: 14px;
-    color: var(--muted);
+    font-size: 17px;
+    font-weight: 500;
+    color: var(--white);
     line-height: 1.7;
-    font-weight: 300;
-    margin-bottom: 24px;
+    margin-bottom: 28px;
+    flex-grow: 1;
   }
   .service-tag {
     font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    color: var(--accent);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: var(--blue);
     text-transform: uppercase;
   }
 
-  /* PRICING */
-  #pricing { background: var(--black); }
+  /* BUNDLE / PRICING */
+  #pricing { background: var(--navy); }
   .pricing-intro {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 80px;
-    align-items: start;
-    margin-bottom: 80px;
-  }
-  .pricing-note {
-    font-size: 14px;
-    color: var(--muted);
+    font-size: 19px;
+    font-weight: 500;
+    color: var(--white);
+    max-width: 600px;
     line-height: 1.8;
-    font-weight: 300;
-    margin-top: 8px;
+    margin-bottom: 56px;
   }
-
-  .pricing-table { width: 100%; border-collapse: collapse; }
-  .pricing-table thead tr {
-    border-bottom: 1px solid #5BC4F5;
-  }
-  .pricing-table th {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-    padding: 12px 0;
-    text-align: left;
-    font-weight: 400;
-  }
-  .pricing-table th:last-child { text-align: right; }
-  .pricing-table tbody tr {
-    border-bottom: 1px solid var(--border);
-    transition: background 0.2s;
-  }
-  .pricing-table tbody tr:hover { background: var(--card); }
-  .pricing-table td {
-    padding: 20px 0;
-    font-size: 15px;
-  }
-  .pricing-table td:first-child { color: var(--white); font-weight: 500; }
-  .pricing-table td:nth-child(2) {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    color: var(--muted);
-    padding-right: 24px;
-  }
-  .pricing-table td:last-child {
-    text-align: right;
-    font-family: var(--font-display);
-    font-size: 28px;
-    color: var(--accent);
-    letter-spacing: 1px;
-  }
+  .pricing-intro strong { color: var(--blue); font-weight: 800; }
 
   .bundle-box {
-    margin-top: 48px;
-    border: 1px solid var(--accent);
-    padding: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 32px;
+    border: 3px solid var(--gold);
+    border-radius: 16px;
+    padding: 64px 56px;
     position: relative;
     overflow: hidden;
+    background: linear-gradient(135deg, var(--card) 0%, var(--navy2) 100%);
   }
   .bundle-box::before {
     content: 'BEST VALUE';
     position: absolute;
-    top: 16px; right: 16px;
+    top: 28px; right: 28px;
     font-family: var(--font-mono);
-    font-size: 9px;
-    letter-spacing: 0.15em;
-    background: var(--accent2);
-    color: var(--black);
-    padding: 4px 10px;
+    font-size: 13px;
     font-weight: 700;
+    letter-spacing: 0.15em;
+    background: var(--gold);
+    color: var(--navy);
+    padding: 8px 16px;
+    border-radius: 4px;
+  }
+  .bundle-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 16px;
   }
   .bundle-name {
     font-family: var(--font-display);
-    font-size: 36px;
+    font-size: clamp(48px, 7vw, 90px);
     letter-spacing: 1px;
-    margin-bottom: 8px;
+    color: var(--white);
+    line-height: 0.95;
+    margin-bottom: 24px;
   }
   .bundle-includes {
-    font-size: 13px;
-    color: var(--muted);
-    font-weight: 300;
+    font-size: 19px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 36px;
+    line-height: 1.7;
+  }
+  .bundle-includes strong { color: var(--gold); font-weight: 800; }
+
+  .bundle-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 32px;
   }
   .bundle-price {
     font-family: var(--font-display);
-    font-size: 72px;
-    color: #C9A84C;
+    font-size: 140px;
+    color: var(--gold);
     line-height: 1;
     letter-spacing: 2px;
-    white-space: nowrap;
   }
-  .bundle-save {
+  .bundle-price-label {
     font-family: var(--font-mono);
-    font-size: 11px;
-    color: #C9A84C;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--blue);
     letter-spacing: 0.1em;
-    text-align: right;
-    margin-top: 6px;
+    text-transform: uppercase;
+  }
+
+  .bundle-features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .bundle-feature {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--white);
+  }
+  .bundle-feature-icon {
+    width: 28px; height: 28px;
+    background: var(--blue);
+    color: var(--navy);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+
+  .bundle-cta {
+    display: inline-block;
+    background: var(--blue);
+    color: var(--navy);
+    font-family: var(--font-display);
+    font-size: 28px;
+    letter-spacing: 2px;
+    padding: 20px 48px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .bundle-cta:hover { background: var(--gold); transform: translateY(-2px); }
+
+  .pricing-note {
+    margin-top: 40px;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--blue);
+    text-align: center;
   }
 
   /* CONTACT */
-  #contact { background: var(--off-black); }
+  #contact { background: var(--navy2); }
   .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 80px;
-    margin-top: 60px;
+    margin-top: 64px;
   }
-  .contact-left {}
   .contact-headline {
     font-family: var(--font-display);
-    font-size: clamp(40px, 5vw, 72px);
-    line-height: 0.95;
-    letter-spacing: 1px;
-    margin-bottom: 32px;
+    font-size: clamp(48px, 6vw, 84px);
+    line-height: 0.92;
+    letter-spacing: 0px;
+    margin-bottom: 36px;
+    color: var(--white);
   }
-  .contact-headline .accent { color: var(--accent); }
+  .contact-headline .blue { color: var(--blue); }
   .contact-info { display: flex; flex-direction: column; gap: 20px; }
   .contact-item {
     display: flex;
     align-items: center;
-    gap: 16px;
-    padding: 20px 24px;
-    border: 1px solid var(--border);
-    transition: border-color 0.2s;
+    gap: 18px;
+    padding: 22px 26px;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    transition: border-color 0.2s, background 0.2s;
   }
-  .contact-item:hover { border-color: var(--accent); }
-  .contact-icon { font-size: 20px; flex-shrink: 0; }
+  .contact-item:hover { border-color: var(--blue); background: var(--card); }
+  .contact-icon { font-size: 24px; flex-shrink: 0; }
   .contact-label {
     font-family: var(--font-mono);
-    font-size: 9px;
+    font-size: 12px;
+    font-weight: 700;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 4px;
+    color: var(--blue);
+    margin-bottom: 6px;
   }
-  .contact-value { font-size: 16px; color: var(--white); font-weight: 500; }
+  .contact-value { font-size: 19px; color: var(--white); font-weight: 700; }
 
-  .contact-form { display: flex; flex-direction: column; gap: 16px; }
-  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .contact-form { display: flex; flex-direction: column; gap: 18px; }
+  .form-group { display: flex; flex-direction: column; gap: 9px; }
   .form-label {
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: 12px;
+    font-weight: 700;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: var(--muted);
+    color: var(--blue);
   }
   .form-input, .form-textarea, .form-select {
     background: var(--card);
-    border: 1px solid var(--border);
+    border: 2px solid var(--border);
     color: var(--white);
     font-family: var(--font-body);
-    font-size: 14px;
-    padding: 14px 18px;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 16px 20px;
     outline: none;
     transition: border-color 0.2s;
     width: 100%;
+    border-radius: 6px;
     appearance: none;
   }
-  .form-input::placeholder, .form-textarea::placeholder { color: var(--muted); }
-  .form-input:focus, .form-textarea:focus, .form-select:focus { border-color: var(--accent); }
+  .form-input::placeholder, .form-textarea::placeholder { color: #7090A8; }
+  .form-input:focus, .form-textarea:focus, .form-select:focus { border-color: var(--blue); }
   .form-textarea { resize: vertical; min-height: 120px; }
   .form-select option { background: var(--card); }
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
 
   .submit-btn {
-    background: var(--accent);
-    color: var(--black);
+    background: var(--blue);
+    color: var(--navy);
     border: none;
-    padding: 18px 40px;
+    padding: 20px 40px;
     font-family: var(--font-display);
-    font-size: 22px;
+    font-size: 26px;
     letter-spacing: 2px;
-    cursor: none;
+    cursor: pointer;
     transition: background 0.2s, transform 0.15s;
     margin-top: 8px;
     width: 100%;
+    border-radius: 8px;
   }
-  .submit-btn:hover { background: var(--white); transform: translateY(-2px); }
+  .submit-btn:hover { background: var(--gold); transform: translateY(-2px); }
+
+  .tap-text-btn {
+    display: block;
+    background: var(--gold);
+    color: var(--navy);
+    text-align: center;
+    padding: 18px;
+    font-weight: 800;
+    font-size: 18px;
+    border-radius: 8px;
+    margin-top: 14px;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    font-family: var(--font-body);
+  }
+  .tap-text-btn:hover { background: var(--blue); }
 
   /* FOOTER */
   footer {
-    background: var(--black);
-    border-top: 1px solid var(--border);
-    padding: 40px 48px;
+    background: var(--navy);
+    border-top: 2px solid var(--border);
+    padding: 44px 48px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
   }
   .footer-logo {
     font-family: var(--font-display);
-    font-size: 24px;
-    letter-spacing: 2px;
+    font-size: 26px;
+    letter-spacing: 1px;
     color: var(--white);
   }
-  .footer-logo span { color: var(--accent); }
+  .footer-logo span { color: var(--blue); }
   .footer-copy {
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: 12px;
+    font-weight: 700;
     letter-spacing: 0.1em;
-    color: var(--muted);
+    color: var(--blue);
     text-transform: uppercase;
   }
   .footer-phone {
     font-family: var(--font-mono);
-    font-size: 13px;
-    color: var(--accent);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gold);
     letter-spacing: 0.05em;
   }
 
-  /* ANIMATIONS */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
@@ -549,21 +576,23 @@
     50% { opacity: 1; }
   }
 
-  /* Page transitions */
   .page-section { opacity: 0; transform: translateY(40px); transition: opacity 0.7s ease, transform 0.7s ease; }
   .page-section.visible { opacity: 1; transform: translateY(0); }
 
-  /* Active nav */
-  .nav-links a.active { color: var(--white); }
+  @media (max-width: 768px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    .bundle-features { grid-template-columns: 1fr; }
+    .nav-links { display: none; }
+    section { padding: 90px 24px; }
+  }
 </style>
 </head>
 <body>
 
-<div class="cursor" id="cursor"></div>
-
 <!-- NAV -->
 <nav id="navbar">
-  <a href="#home" class="nav-logo">THE CLEAN SLATE<br><span style="font-size:0.6em;letter-spacing:3px">POWER WASH LLC</span></a>
+  <a href="#home" class="nav-logo">THE CLEAN SLATE<span class="sub">POWER WASH LLC</span></a>
   <ul class="nav-links">
     <li><a href="#home">Home</a></li>
     <li><a href="#services">Services</a></li>
@@ -582,12 +611,12 @@
     <div class="hero-eyebrow">Arvada's Premier Power Washing · Est. 2025</div>
     <div class="hero-title">
       THE CLEAN<br>
-      <span class="outline">SLATE</span><br>
-      <span class="accent">POWER WASH</span>
+      <span class="blue">SLATE</span><br>
+      <span class="gold">POWER WASH</span>
     </div>
     <div class="hero-bottom">
       <div class="hero-desc">
-        <strong>We don't just clean surfaces — we restore them.</strong> Driveways, houses, patios, fences. Serving Arvada, Wheat Ridge & Westminster with pressure washing that actually lasts.
+        <strong>We don't just clean surfaces — we restore them.</strong> Driveways, car detailing, patios, fences, garbage cans. Serving Arvada, Wheat Ridge &amp; Westminster.
       </div>
       <div class="hero-stats">
         <div>
@@ -616,24 +645,16 @@
 <div class="marquee-wrap">
   <div class="marquee-inner">
     <span class="marquee-item">Driveways <span class="marquee-sep">·</span></span>
-    
+    <span class="marquee-item">Car Detail <span class="marquee-sep">·</span></span>
     <span class="marquee-item">Patios <span class="marquee-sep">·</span></span>
     <span class="marquee-item">Gutters <span class="marquee-sep">·</span></span>
     <span class="marquee-item">Fences <span class="marquee-sep">·</span></span>
-    <span class="marquee-item">Fleet Washing <span class="marquee-sep">·</span></span>
-    <span class="marquee-item">Interior Detailing <span class="marquee-sep">·</span></span>
-    <span class="marquee-item">Garbage Can Clean <span class="marquee-sep">·</span></span>
-    <span class="marquee-item">Interior Detailing <span class="marquee-sep">·</span></span>
     <span class="marquee-item">Garbage Can Clean <span class="marquee-sep">·</span></span>
     <span class="marquee-item">Driveways <span class="marquee-sep">·</span></span>
-    
+    <span class="marquee-item">Car Detail <span class="marquee-sep">·</span></span>
     <span class="marquee-item">Patios <span class="marquee-sep">·</span></span>
     <span class="marquee-item">Gutters <span class="marquee-sep">·</span></span>
     <span class="marquee-item">Fences <span class="marquee-sep">·</span></span>
-    <span class="marquee-item">Fleet Washing <span class="marquee-sep">·</span></span>
-    <span class="marquee-item">Interior Detailing <span class="marquee-sep">·</span></span>
-    <span class="marquee-item">Garbage Can Clean <span class="marquee-sep">·</span></span>
-    <span class="marquee-item">Interior Detailing <span class="marquee-sep">·</span></span>
     <span class="marquee-item">Garbage Can Clean <span class="marquee-sep">·</span></span>
   </div>
 </div>
@@ -647,8 +668,8 @@
     <div class="service-card">
       <div class="service-num">01 —</div>
       <span class="service-icon">💧</span>
-      <div class="service-name">DRIVEWAYS & CONCRETE</div>
-      <div class="service-desc">Oil stains, tire marks, algae — gone. We use high-pressure surface cleaners for a streak-free finish every time. Before & after photos on every job.</div>
+      <div class="service-name">DRIVEWAYS &amp; CONCRETE</div>
+      <div class="service-desc">Oil stains, tire marks, algae — gone. We use high-pressure surface cleaners for a streak-free finish every time. Before &amp; after photos on every job.</div>
       <div class="service-tag">Most popular service →</div>
     </div>
     <div class="service-card">
@@ -661,14 +682,14 @@
     <div class="service-card">
       <div class="service-num">03 —</div>
       <span class="service-icon">🪵</span>
-      <div class="service-name">DECKS & PATIOS</div>
-      <div class="service-desc">Composite, wood, concrete, pavers — each surface gets the right pressure and chemical treatment. Optional sealing available to protect your investment.</div>
-      <div class="service-tag">Add sealing for 2× value →</div>
+      <div class="service-name">DECKS &amp; PATIOS</div>
+      <div class="service-desc">Composite, wood, concrete, pavers — each surface gets the right pressure and technique for a deep clean that lasts.</div>
+      <div class="service-tag">Great for entertaining season →</div>
     </div>
     <div class="service-card">
       <div class="service-num">04 —</div>
       <span class="service-icon">🌿</span>
-      <div class="service-name">FENCES & GUTTERS</div>
+      <div class="service-name">FENCES &amp; GUTTERS</div>
       <div class="service-desc">Vinyl, wood, and composite fences restored to original color. Gutter flushing from the ground — no ladder, no risk, done in 20 minutes.</div>
       <div class="service-tag">Easy upsell add-on →</div>
     </div>
@@ -684,79 +705,34 @@
 
 <!-- PRICING -->
 <section id="pricing" class="page-section">
-  <div class="section-eyebrow">Transparent rates</div>
-  <div class="pricing-intro">
-    <div>
-      <div class="section-title">WHAT<br>YOU PAY</div>
-    </div>
-    <div style="padding-top: 8px;">
-      <div class="pricing-note">No hidden fees. No surprise charges. We quote before we start — and we stick to it. All jobs include before & after photos. Satisfaction guaranteed or we come back free.</div>
-      <div style="margin-top: 24px; font-family: var(--font-mono); font-size: 11px; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase;">Call or text for a free quote → 720-333-1996</div>
-    </div>
-  </div>
+  <div class="section-eyebrow">The complete package</div>
+  <div class="section-title">THE FULL<br>SLATE BUNDLE</div>
 
-  <table class="pricing-table">
-    <thead>
-      <tr>
-        <th>Service</th>
-        <th>Details</th>
-        <th>Price</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Driveway — Standard</td>
-        <td>Up to 600 sq ft concrete</td>
-        <td>$50–$60</td>
-      </tr>
-      <tr>
-        <td>Driveway — Large</td>
-        <td>600–1,200 sq ft, 3-car garage</td>
-        <td>$75–$90</td>
-      </tr>
-      <tr>
-        <td>Patio / Deck</td>
-        <td>200–500 sq ft concrete or wood</td>
-        <td>$50–$70</td>
-      </tr>
-      <tr>
-        <td>Sidewalk</td>
-        <td>Front walk add-on</td>
-        <td>$20–$30</td>
-      </tr>
-      <tr>
-        <td>Fence</td>
-        <td>Vinyl or wood, per 100 linear ft</td>
-        <td>$50–$70</td>
-      </tr>
-      <tr>
-        <td>Gutter Flush</td>
-        <td>Single story, from ground</td>
-        <td>$40–$60</td>
-      </tr>
-      <tr>
-        <td>Garbage Can Clean</td>
-        <td>Power washed, deodorized &amp; sanitized</td>
-        <td>$10 per can</td>
-      </tr>
-      <tr>
-        <td>Car Detail</td>
-        <td>Interior &amp; exterior — vacuum, wipe-down, windows</td>
-        <td>$50–$70</td>
-      </tr>
-    </tbody>
-  </table>
+  <p class="pricing-intro">We keep pricing simple. Individual jobs are quoted free based on your property — but the <strong>Full Slate Bundle</strong> is our flat-rate, best-value package for the whole exterior of your home.</p>
 
   <div class="bundle-box">
-    <div>
-      <div class="bundle-name">THE FULL SLATE BUNDLE</div>
-      <div class="bundle-includes">Driveway + Sidewalk + Patio + Car Detail — complete property package</div>
+    <div class="bundle-eyebrow">⭐ Most booked package</div>
+    <div class="bundle-name">THE FULL SLATE<br>BUNDLE</div>
+    <div class="bundle-includes">Driveway + Sidewalk + Patio + Garbage Can Cleaning — <strong>everything in one visit.</strong></div>
+
+    <div class="bundle-price-row">
+      <div class="bundle-price">$320</div>
+      <div class="bundle-price-label">Flat rate<br>complete package</div>
     </div>
-    <div>
-      <div class="bundle-price">$150</div>
-      <div class="bundle-save">BEST VALUE — Book the full package today</div>
+
+    <div class="bundle-features">
+      <div class="bundle-feature"><div class="bundle-feature-icon">✓</div>Driveway power wash</div>
+      <div class="bundle-feature"><div class="bundle-feature-icon">✓</div>Sidewalk included</div>
+      <div class="bundle-feature"><div class="bundle-feature-icon">✓</div>Patio deep clean</div>
+      <div class="bundle-feature"><div class="bundle-feature-icon">✓</div>Garbage can cleaning</div>
+      <div class="bundle-feature"><div class="bundle-feature-icon">✓</div>Before &amp; after photos</div>
+      <div class="bundle-feature"><div class="bundle-feature-icon">✓</div>100% satisfaction guaranteed</div>
     </div>
+
+    <a href="#contact" class="bundle-cta">BOOK THE BUNDLE →</a>
   </div>
+
+  <p class="pricing-note">Need a single service instead? Text us for a free custom quote — 720-333-1996</p>
 </section>
 
 <!-- CONTACT -->
@@ -768,7 +744,7 @@
       <div class="contact-headline">
         START<br>
         YOUR<br>
-        <span class="accent">POWER WASH LLC.</span>
+        <span class="blue">CLEAN SLATE.</span>
       </div>
       <div class="contact-info">
         <div class="contact-item">
@@ -804,8 +780,8 @@
 
     <div>
       <form class="contact-form" action="https://formspree.io/f/mqeoeqag" method="POST">
-        <input type="hidden" name="_subject" value="New Quote Request — Clean Slate Power Wash">
-        <input type="hidden" name="_replyto" value="">
+        <input type="hidden" name="_subject" value="New Quote Request — The Clean Slate Power Wash LLC">
+        <input type="hidden" name="_next" value="https://thecleanslatepowerwashllc-maker.github.io/cleanslatepowerwash.github.io/?sent=true">
         <div class="form-row">
           <div class="form-group">
             <label class="form-label">First name</label>
@@ -825,25 +801,11 @@
           <input class="form-input" type="text" name="address" placeholder="Street address in Arvada / Wheat Ridge">
         </div>
         <div class="form-group">
-          <label class="form-label">Service needed</label>
-          <select class="form-select" name="service">
-            <option value="">Select a service...</option>
-            <option>Driveway & Concrete</option>
-            <option>Deck / Patio</option>
-            <option>Fence</option>
-            <option>Gutter Flush</option>
-            <option>Garbage Can Clean</option>
-            <option>Full Slate Bundle</option>
-            <option>Multiple services</option>
-            <option>Not sure — need a quote</option>
-          </select>
-        </div>
-        <div class="form-group">
           <label class="form-label">Tell us more (optional)</label>
           <textarea class="form-textarea" name="message" placeholder="Any details about the job — size of driveway, condition of surfaces, etc."></textarea>
         </div>
         <button type="submit" class="submit-btn">SEND REQUEST →</button>
-        <a href="sms:7203331996" style="display:block;background:#C9A84C;color:#0A1628;text-align:center;padding:16px;font-weight:bold;font-size:16px;border-radius:8px;margin-top:12px;text-decoration:none;letter-spacing:1px;font-family:Arial Black,sans-serif">📱 TAP TO TEXT COLLIN DIRECTLY →</a>
+        <a href="sms:+17203331996" class="tap-text-btn">📱 TAP TO TEXT US DIRECTLY →</a>
       </form>
     </div>
   </div>
@@ -851,36 +813,22 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">THE CLEAN SLATE<br><span style="font-size:0.6em;letter-spacing:3px">POWER WASH LLC</span></div>
-  <div class="footer-copy">© 2025 The Clean Slate Power Wash LLC · Arvada, CO · All rights reserved</div>
+  <div class="footer-logo">THE CLEAN SLATE<span> POWER WASH LLC</span></div>
+  <div class="footer-copy">© 2025 The Clean Slate Power Wash LLC · Arvada, CO</div>
   <div class="footer-phone">720-333-1996</div>
 </footer>
 
 <script>
-  // Custom cursor
-  const cursor = document.getElementById('cursor');
-  document.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-  });
-  document.querySelectorAll('a, button, .service-card, .contact-item').forEach(el => {
-    el.addEventListener('mouseenter', () => cursor.classList.add('grow'));
-    el.addEventListener('mouseleave', () => cursor.classList.remove('grow'));
-  });
-
-  // Navbar scroll
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 60);
   });
 
-  // Scroll reveal
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
   document.querySelectorAll('.page-section').forEach(s => observer.observe(s));
 
-  // Active nav link
   const sections = document.querySelectorAll('section[id]');
   const navLinks = document.querySelectorAll('.nav-links a');
   window.addEventListener('scroll', () => {
@@ -892,8 +840,6 @@
       a.classList.toggle('active', a.getAttribute('href') === '#' + current);
     });
   });
-
-  // Form handled by Formspree
 </script>
 </body>
 </html>
